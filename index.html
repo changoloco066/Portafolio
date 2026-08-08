@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josué — Computer Systems Engineering</title>
+<meta name="description" content="Josué's portfolio — DukeQuill, TaEisHeauton, systems projects and automata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">josue<span class="dot">.</span>dev</div>
+    <div class="navlinks">
+      <a href="#projects">projects</a><span>/</span>
+      <a href="#skills">skills</a><span>/</span>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <canvas id="automaton"></canvas>
+  <p class="hero-eyebrow mono" id="eyebrow">δ: Σ* → Q &nbsp;·&nbsp; computer systems engineering</p>
+  <h1 id="heroTitle">Josué <span class="accent">Reyes</span></h1>
+  <p class="tagline" id="heroTag">
+    <span class="quote">I build from the lexer up to the hardware — I like understanding what's underneath.</span><br>
+    Raspberry Pi homelab · lexers, parsers and compilers for fun · TecNM Saltillo.
+  </p>
+  <div class="hero-links" id="heroLinks">
+    <a class="btn primary" href="#projects">view projects →</a>
+    <a class="btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">github</a>
+    <a class="btn" href="mailto:your-email@example.com">contact</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx mono">$</span>
+      <h2>whoami</h2>
+    </div>
+    <div class="terminal reveal">
+      <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">cat about.txt</span></p>
+      <p class="line">Computer Systems Engineering student at Instituto Tecnológico de Saltillo (TecNM).</p>
+      <p class="line">I care about what happens underneath: how text gets tokenized, how a grammar gets
+      validated, how a service runs on your own hardware. Currently taking Formal Languages and
+      Automata Theory — and yes, it shows in this portfolio.</p>
+      <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">whoami --currently</span></p>
+      <p class="line">Building an MP3 player from scratch with an ESP32-S3 + OLED in C++, learning by trial and error coming from Java.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx mono">01</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects">
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>DukeQuill</h3>
+          <span class="status shipped">shipped</span>
+        </div>
+        <p>Spanish spell-checker and grammar corrector, desktop app in Java/Swing. Custom lexer,
+        HashSet-based dictionary, Damerau-Levenshtein suggestions and accent checking via LanguageTool.
+        Extensible rule engine and a Swing GUI with real-time wavy underlines, tooltips, and .txt/.pdf import.</p>
+        <div class="stack">
+          <span>Java 21</span><span>Swing</span><span>FlatLaf</span><span>LanguageTool</span><span>Custom lexer</span>
+        </div>
+        <a class="card-link" href="https://github.com/YOUR-USERNAME/DukeQuill" target="_blank" rel="noopener">github.com/YOUR-USERNAME/DukeQuill →</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>dukequill-api</h3>
+          <span class="status shipped">shipped</span>
+        </div>
+        <p>Spring Boot REST API exposing the same DukeQuill logic via <code>POST /api/analyze</code>,
+        decoupling the correction engine from the desktop interface.</p>
+        <div class="stack">
+          <span>Java</span><span>Spring Boot</span><span>REST</span>
+        </div>
+        <a class="card-link" href="https://github.com/YOUR-USERNAME/dukequill-api" target="_blank" rel="noopener">github.com/YOUR-USERNAME/dukequill-api →</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>TaEisHeauton</h3>
+          <span class="status shipped">shipped</span>
+        </div>
+        <p>Android home screen widget app, named after the Greek title of Marcus Aurelius's Meditations.
+        Displays personal reflections from the book on rotation, with Room persistence, WorkManager
+        scheduling, and a detail dialog on tap.</p>
+        <div class="stack">
+          <span>Kotlin</span><span>Android</span><span>Room</span><span>WorkManager</span>
+        </div>
+        <a class="card-link" href="https://github.com/YOUR-USERNAME/TaEisHeauton" target="_blank" rel="noopener">github.com/YOUR-USERNAME/TaEisHeauton →</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>ESP32 MP3 Player</h3>
+          <span class="status progress">in progress</span>
+        </div>
+        <p>MP3 player built from scratch with an ESP32-S3 and a 0.96" OLED display, written in C++
+        with PlatformIO. Player state logic and Serial Monitor command parsing are working; OLED
+        soldering and audio hardware integration are still pending.</p>
+        <div class="stack">
+          <span>C++</span><span>ESP32-S3</span><span>PlatformIO</span><span>OLED</span>
+        </div>
+        <span class="card-link" style="color:var(--dim)">repo coming soon</span>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>LeetCode Solutions</h3>
+          <span class="status shipped">active</span>
+        </div>
+        <p>Java solutions repository organized by difficulty, with READMEs written as study notes.
+        Covers Two Sum, Sliding Window, palindromes, Roman to Integer, Regular Expression Matching,
+        Container With Most Water and more — where I learned dynamic programming and memoization from scratch.</p>
+        <div class="stack">
+          <span>Java</span><span>DP</span><span>Data structures</span>
+        </div>
+        <a class="card-link" href="https://github.com/YOUR-USERNAME/leetcode-solutions" target="_blank" rel="noopener">github.com/YOUR-USERNAME/leetcode-solutions →</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <h3>Homelab</h3>
+          <span class="status shipped">in production</span>
+        </div>
+        <p>Raspberry Pi running as a DNS server (Pi-hole), VPN, and private hosting environment for
+        personal projects. A space to experiment with infrastructure without relying on a third party.</p>
+        <div class="stack">
+          <span>Pi-hole</span><span>VPN</span><span>PM2</span><span>Self-hosted</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx mono">02</span>
+      <h2>Stack</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <span class="mono label">Languages</span>
+        <ul>
+          <li>Java</li>
+          <li>C++ (learning)</li>
+          <li>JavaScript / TypeScript</li>
+          <li>Python</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="mono label">Systems & Infra</span>
+        <ul>
+          <li>Raspberry Pi / self-hosting</li>
+          <li>Networking, DNS, VPN</li>
+          <li>Linux</li>
+          <li>PM2</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="mono label">Areas of interest</span>
+        <ul>
+          <li>Automata & formal languages</li>
+          <li>Compilers / lexers / parsers</li>
+          <li>Embedded (ESP32)</li>
+          <li>Android (Room, WorkManager)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="prompt-line"><span class="prompt" style="color:var(--teal)">josue@saltillo</span>:~$ echo "let's talk"<span class="cursor"></span></p>
+    <div class="socials">
+      <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">github</a>
+      <a href="mailto:your-email@example.com">email</a>
+      <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
