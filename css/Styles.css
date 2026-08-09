@@ -94,9 +94,9 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
 .projects{ display:flex; flex-direction:column; gap:16px; }
 .card{
   border:1px solid var(--rule); border-radius:4px; padding:22px 24px;
-  background:var(--ink-soft); transition:border-color .25s, transform .25s;
+  background:var(--ink-soft); transition:border-color .25s;
 }
-.card:hover{ border-color:var(--amber-dim); transform:translateX(4px); }
+.card:hover{ border-color:var(--amber-dim); }
 .card-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
 .card h3{ font-family:'Fraunces', serif; font-size:20px; font-weight:600; margin:0; color:var(--parchment); }
 .status{ font-family:'JetBrains Mono', monospace; font-size:11px; padding:3px 9px; border-radius:20px; letter-spacing:0.5px; white-space:nowrap; }
@@ -106,6 +106,28 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
 .stack{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
 .stack span{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--dim); border:1px solid var(--rule); padding:3px 8px; border-radius:2px; }
 .card-link{ font-family:'JetBrains Mono', monospace; font-size:13px; }
+
+/* ---------- DOT DIVIDER (anime.js grid-stagger nod) ---------- */
+.dot-divider{
+  display:grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap:10px;
+  max-width:640px;
+  margin:0 auto;
+  padding:36px 0;
+}
+.dot-divider .dot{
+  width:5px; height:5px; border-radius:50%;
+  background:var(--teal);
+  justify-self:center;
+  transform:scale(0);
+  opacity:0.8;
+}
+
+/* ---------- DUKE MUG EASTER EGG ---------- */
+.card--duke{ position:relative; }
+.mug{ position:absolute; top:18px; right:22px; opacity:0.9; }
+.steam-wisp{ fill:none; stroke:var(--dim); stroke-width:1.6; stroke-linecap:round; opacity:0.7; }
 
 /* ---------- SKILLS ---------- */
 .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px; }

@@ -32,10 +32,14 @@
   </p>
   <div class="hero-links" id="heroLinks">
     <a class="btn primary" href="#projects">view projects →</a>
-    <a class="btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">github</a>
-    <a class="btn" href="mailto:your-email@example.com">contact</a>
+    <a class="btn" href="https://github.com/changoloco066" target="_blank" rel="noopener">github</a>
+    <a class="btn" href="mailto:josuesf066@gmail.com">contact</a>
   </div>
 </header>
+
+<div class="wrap">
+  <div class="dot-divider" id="dotDivider" aria-hidden="true"></div>
+</div>
 
 <section id="about">
   <div class="wrap">
@@ -51,6 +55,8 @@
       Automata Theory — and yes, it shows in this portfolio.</p>
       <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">whoami --currently</span></p>
       <p class="line">Building an MP3 player from scratch with an ESP32-S3 + OLED in C++, learning by trial and error coming from Java.</p>
+      <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">javac DukeQuill.java && java Main</span></p>
+      <p class="line"><span class="cmt">// compiling... where it all started.</span></p>
     </div>
   </div>
 </section>
@@ -63,18 +69,33 @@
     </div>
     <div class="projects">
 
-      <article class="card reveal">
+      <article class="card reveal card--duke">
+        <div class="mug" id="dukeMug" aria-hidden="true">
+          <svg viewBox="0 0 60 60" width="46" height="46">
+            <g id="steam">
+              <path class="steam-wisp" d="M20 18 Q 17 12, 21 6" />
+              <path class="steam-wisp" d="M30 18 Q 27 12, 31 6" />
+              <path class="steam-wisp" d="M40 18 Q 37 12, 41 6" />
+            </g>
+            <path d="M14 22 h26 v18 a13 13 0 0 1 -26 0 z" fill="var(--ink)" stroke="var(--amber)" stroke-width="2"/>
+            <path d="M40 26 h6 a6 6 0 0 1 0 12 h-6" fill="none" stroke="var(--amber)" stroke-width="2"/>
+            <circle cx="21" cy="34" r="2" fill="var(--teal)"/>
+            <circle cx="29" cy="34" r="2" fill="var(--teal)"/>
+            <path d="M20 40 q5 4 10 0" fill="none" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div class="card-top">
           <h3>DukeQuill</h3>
           <span class="status shipped">shipped</span>
         </div>
         <p>Spanish spell-checker and grammar corrector, desktop app in Java/Swing. Custom lexer,
         HashSet-based dictionary, Damerau-Levenshtein suggestions and accent checking via LanguageTool.
-        Extensible rule engine and a Swing GUI with real-time wavy underlines, tooltips, and .txt/.pdf import.</p>
+        Extensible rule engine and a Swing GUI with real-time wavy underlines, tooltips, and .txt/.pdf import.
+        <span class="mono" style="color:var(--dim); font-size:12.5px;">— named after Java's own mascot, minus the trademark lawsuit.</span></p>
         <div class="stack">
           <span>Java 21</span><span>Swing</span><span>FlatLaf</span><span>LanguageTool</span><span>Custom lexer</span>
         </div>
-        <a class="card-link" href="https://github.com/YOUR-USERNAME/DukeQuill" target="_blank" rel="noopener">github.com/YOUR-USERNAME/DukeQuill →</a>
+        <a class="card-link" href="https://github.com/YOUR-USERNAME/DukeQuill" target="_blank" rel="noopener">DukeQuill →</a>
       </article>
 
       <article class="card reveal">
@@ -87,7 +108,7 @@
         <div class="stack">
           <span>Java</span><span>Spring Boot</span><span>REST</span>
         </div>
-        <a class="card-link" href="https://github.com/YOUR-USERNAME/dukequill-api" target="_blank" rel="noopener">github.com/YOUR-USERNAME/dukequill-api →</a>
+        <a class="card-link" href="https://github.com/changoloco066/dukequill-api" target="_blank" rel="noopener">dukequill-api →</a>
       </article>
 
       <article class="card reveal">
@@ -101,7 +122,7 @@
         <div class="stack">
           <span>Kotlin</span><span>Android</span><span>Room</span><span>WorkManager</span>
         </div>
-        <a class="card-link" href="https://github.com/YOUR-USERNAME/TaEisHeauton" target="_blank" rel="noopener">github.com/YOUR-USERNAME/TaEisHeauton →</a>
+        <a class="card-link" href="https://github.com/changoloco066/TaEisHeauton" target="_blank" rel="noopener">TaEisHeauton →</a>
       </article>
 
       <article class="card reveal">
@@ -129,7 +150,7 @@
         <div class="stack">
           <span>Java</span><span>DP</span><span>Data structures</span>
         </div>
-        <a class="card-link" href="https://github.com/YOUR-USERNAME/leetcode-solutions" target="_blank" rel="noopener">github.com/YOUR-USERNAME/leetcode-solutions →</a>
+        <a class="card-link" href="https://github.com/changoloco066/leetcode" target="_blank" rel="noopener">leetcode →</a>
       </article>
 
       <article class="card reveal">
@@ -190,14 +211,14 @@
   <div class="wrap">
     <p class="prompt-line"><span class="prompt" style="color:var(--teal)">josue@saltillo</span>:~$ echo "let's talk"<span class="cursor"></span></p>
     <div class="socials">
-      <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">github</a>
-      <a href="mailto:your-email@example.com">email</a>
-      <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/changoloco066" target="_blank" rel="noopener">github</a>
+      <a href="mailto:josuesf066@gmail.com">email</a>
+      <a href="https://linkedin.com/in/josuesf" target="_blank" rel="noopener">linkedin</a>
     </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
