@@ -29,7 +29,25 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--amber); outline-o
 
 .wrap{ max-width:960px; margin:0 auto; padding:0 28px; }
 
-/* ---------- NAV ---------- */
+/* CRT SCANLINES (subtle) */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.055) 0px,
+    rgba(0,0,0,0.055) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode:overlay;
+  opacity:0.5;
+}
+
+/*  NAV  */
 nav{
   position:sticky; top:0; z-index:50;
   background:rgba(11,17,32,0.85);
@@ -37,15 +55,36 @@ nav{
   border-bottom:1px solid var(--rule);
 }
 nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
-.brand{ font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--parchment); letter-spacing:0.5px; }
+.brand{ font-size:14px; color:var(--parchment); letter-spacing:0.5px; }
 .brand .dot{ color:var(--amber); }
 .navlinks{ display:flex; gap:28px; font-family:'JetBrains Mono', monospace; font-size:13px; }
 .navlinks a{ color:var(--dim); }
 .navlinks a:hover{ color:var(--amber); }
 .navlinks span{ color:var(--rule); }
 
-/* ---------- HERO ---------- */
-.hero{ padding:64px 0 40px; position:relative; }
+/*  HERO  */
+.hero-outer{ padding:36px 0 40px; }
+.term-window{
+  border:1px solid var(--rule);
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--ink-soft);
+  box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+}
+.term-bar{
+  display:flex; align-items:center; gap:8px;
+  padding:10px 14px;
+  background:#0D1526;
+  border-bottom:1px solid var(--rule);
+}
+.term-dot{ width:11px; height:11px; border-radius:50%; display:inline-block; }
+.term-dot.red{ background:#E8604C; }
+.term-dot.yellow{ background:#E8C34C; }
+.term-dot.green{ background:#5FB37A; }
+.term-title{ margin:0 auto; font-size:12px; color:var(--dim); letter-spacing:0.3px; }
+.term-body{ padding:44px 32px 40px; }
+
+.hero{ position:relative; }
 #automaton{ display:block; width:100%; height:260px; }
 .hero-eyebrow{
   font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--teal);
@@ -73,14 +112,14 @@ nav .wrap{ display:flex; align-items:center; justify-content:space-between; heig
 .btn.primary{ border-color:var(--amber); color:var(--amber); }
 .btn:hover{ border-color:var(--amber); color:var(--amber); }
 
-/* ---------- SECTION SHARED ---------- */
+/* SECTION SHARED */
 section{ padding:56px 0; border-top:1px solid var(--rule); }
 .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:34px; }
 .section-head .idx{ font-family:'JetBrains Mono', monospace; color:var(--rule); font-size:14px; }
 .section-head h2{ font-family:'Fraunces', serif; font-weight:600; font-size:28px; margin:0; color:var(--parchment); }
 .reveal{ opacity:0; transform:translateY(16px); }
 
-/* ---------- ABOUT (terminal block) ---------- */
+/* ABOUT (terminal block)  */
 .terminal{
   background:var(--ink-soft); border:1px solid var(--rule); border-radius:4px;
   padding:22px 24px; font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--dim);
@@ -90,7 +129,24 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
 .terminal .out{ color:var(--parchment); }
 .terminal .cmt{ color:var(--rule); }
 
-/* ---------- PROJECTS ---------- */
+/*  NEOFETCH BLOCK */
+.neofetch{
+  display:flex; gap:36px; align-items:flex-start; flex-wrap:wrap;
+  background:var(--ink-soft); border:1px solid var(--rule); border-radius:4px;
+  padding:26px 28px; margin-bottom:16px; font-size:13.5px;
+}
+.neofetch .ascii{
+  color:var(--amber); line-height:1.25; font-size:12.5px; margin:2px 0 0;
+  white-space:pre;
+}
+.neofetch-info p{ margin:0 0 6px; color:var(--dim); }
+.neofetch-info .nf-header{ color:var(--parchment); font-weight:600; font-size:15px; }
+.neofetch-info .nf-rule{ color:var(--rule); }
+.neofetch-info .nf-key{ color:var(--teal); }
+.nf-colors{ display:flex; gap:6px; margin-top:12px !important; }
+.nf-colors span{ width:14px; height:14px; border-radius:2px; display:inline-block; border:1px solid var(--rule); }
+
+/* PROJECTS */
 .projects{ display:flex; flex-direction:column; gap:16px; }
 .card{
   border:1px solid var(--rule); border-radius:4px; padding:22px 24px;
@@ -107,7 +163,7 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
 .stack span{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--dim); border:1px solid var(--rule); padding:3px 8px; border-radius:2px; }
 .card-link{ font-family:'JetBrains Mono', monospace; font-size:13px; }
 
-/* ---------- DOT DIVIDER (anime.js grid-stagger nod) ---------- */
+/* DOT DIVIDER (anime.js grid-stagger nod) */
 .dot-divider{
   display:grid;
   grid-template-columns: repeat(16, 1fr);
@@ -124,19 +180,19 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
   opacity:0.8;
 }
 
-/* ---------- DUKE MUG EASTER EGG ---------- */
+/*  DUKE MUG */
 .card--duke{ position:relative; }
 .mug{ position:absolute; top:18px; right:22px; opacity:0.9; }
 .steam-wisp{ fill:none; stroke:var(--dim); stroke-width:1.6; stroke-linecap:round; opacity:0.7; }
 
-/* ---------- SKILLS ---------- */
+/*  SKILLS */
 .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px; }
 .skill-group .mono.label{ font-size:12px; color:var(--teal); letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:10px; }
 .skill-group ul{ list-style:none; margin:0; padding:0; }
 .skill-group li{ padding:5px 0; color:var(--parchment); font-size:14.5px; border-bottom:1px dashed var(--rule); }
 .skill-group li:last-child{ border-bottom:none; }
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 footer{ padding:40px 0 60px; border-top:1px solid var(--rule); }
 footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
 footer .prompt-line{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--dim); }
@@ -146,9 +202,12 @@ footer .socials{ display:flex; gap:20px; font-family:'JetBrains Mono', monospace
 
 @media (max-width:640px){
   .navlinks{ display:none; }
-  .hero{ padding-top:40px; }
+  .hero-outer{ padding-top:24px; }
+  .term-body{ padding:32px 20px 28px; }
   #automaton{ height:180px; }
+  .neofetch{ flex-direction:column; gap:16px; }
 }
+
 
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }

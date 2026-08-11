@@ -13,7 +13,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand">josue<span class="dot">.</span>dev</div>
+    <div class="brand mono">visitor@josue<span class="dot">:~$</span></div>
     <div class="navlinks">
       <a href="#projects">projects</a><span>/</span>
       <a href="#skills">skills</a><span>/</span>
@@ -22,18 +22,26 @@
   </div>
 </nav>
 
-<header class="hero wrap">
-  <canvas id="automaton"></canvas>
-  <p class="hero-eyebrow mono" id="eyebrow">δ: Σ* → Q &nbsp;·&nbsp; computer systems engineering</p>
-  <h1 id="heroTitle">Josué <span class="accent">Sánchez</span></h1>
-  <p class="tagline" id="heroTag">
-    <span class="quote">I build from the lexer up to the hardware — I like understanding what's underneath.</span><br>
-    Raspberry Pi homelab · lexers, parsers and compilers for fun · TecNM Saltillo.
-  </p>
-  <div class="hero-links" id="heroLinks">
-    <a class="btn primary" href="#projects">view projects →</a>
-    <a class="btn" href="https://github.com/changoloco066" target="_blank" rel="noopener">github</a>
-    <a class="btn" href="mailto:josuesf066@gmail.com">contact</a>
+<header class="hero-outer wrap">
+  <div class="term-window">
+    <div class="term-bar">
+      <span class="term-dot red"></span><span class="term-dot yellow"></span><span class="term-dot green"></span>
+      <span class="term-title mono">josue@saltillo: ~/portfolio — bash</span>
+    </div>
+    <div class="term-body hero">
+      <canvas id="automaton"></canvas>
+      <p class="hero-eyebrow mono" id="eyebrow">δ: Σ* → Q &nbsp;·&nbsp; computer systems engineering</p>
+      <h1 id="heroTitle">Josué <span class="accent">Sánchez</span></h1>
+      <p class="tagline" id="heroTag">
+        <span class="quote">I build from the lexer up to the hardware — I like understanding what's underneath.</span><br>
+        Raspberry Pi homelab · lexers, parsers and compilers for fun · TecNM Saltillo.
+      </p>
+      <div class="hero-links" id="heroLinks">
+        <a class="btn primary" href="#projects">view projects →</a>
+        <a class="btn" href="https://github.com/changoloco066" target="_blank" rel="noopener">github</a>
+        <a class="btn" href="mailto:your-email@example.com">contact</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -47,14 +55,30 @@
       <span class="idx mono">$</span>
       <h2>whoami</h2>
     </div>
+
+    <div class="neofetch reveal">
+      <pre class="ascii mono" aria-hidden="true">  <img src = "img\Hips.png" width="100px" length = "150px">
+
+    </pre>
+      <div class="neofetch-info mono">
+        <p class="nf-header"><span class="prompt">josue</span><span class="cmt">@</span><span class="prompt">saltillo</span></p>
+        <p class="nf-rule">-----------------</p>
+        <p><span class="nf-key">OS:</span> TecNM Saltillo (Computer Systems Eng.)</p>
+        <p><span class="nf-key">Host:</span> Instituto Tecnológico de Saltillo</p>
+        <p><span class="nf-key">Kernel:</span> Formal Languages &amp; Automata Theory</p>
+        <p><span class="nf-key">Shell:</span> curiosity.sh</p>
+        <p><span class="nf-key">Languages:</span> Java, Python, JS/TS, C++ (learning)</p>
+        <p><span class="nf-key">Toys:</span> Raspberry Pi · ESP32-S3 · Flipper Zero</p>
+        <p><span class="nf-key">Building:</span> DukeQuill, ESP32 MP3 Player</p>
+        <p class="nf-colors" aria-hidden="true">
+          <span style="background:var(--ink)"></span><span style="background:var(--amber)"></span><span style="background:var(--teal)"></span><span style="background:var(--parchment)"></span><span style="background:var(--rule)"></span>
+        </p>
+      </div>
+    </div>
+
     <div class="terminal reveal">
-      <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">cat about.txt</span></p>
-      <p class="line">Computer Systems Engineering student at Instituto Tecnológico de Saltillo (TecNM).</p>
-      <p class="line">I care about what happens underneath: how text gets tokenized, how a grammar gets
-      validated, how a service runs on your own hardware. Currently taking Formal Languages and
-      Automata Theory — and yes, it shows in this portfolio.</p>
       <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">whoami --currently</span></p>
-      <p class="line">Building an MP3 player from scratch with an ESP32-S3 + OLED in C++, learning by trial and error coming from Java.</p>
+      <p class="line">Building an MP3 player from scratch with an ESP32-S3 + OLED in C++, learning by trial and error coming from Java. Also just got a Flipper Zero and I'm figuring out what it can do.</p>
       <p class="line"><span class="prompt">josue@saltillo</span><span class="cmt">:~$</span> <span class="out">javac DukeQuill.java && java Main</span></p>
       <p class="line"><span class="cmt">// compiling... where it all started.</span></p>
     </div>
@@ -95,7 +119,7 @@
         <div class="stack">
           <span>Java 21</span><span>Swing</span><span>FlatLaf</span><span>LanguageTool</span><span>Custom lexer</span>
         </div>
-        <a class="card-link" href="https://github.com/YOUR-USERNAME/DukeQuill" target="_blank" rel="noopener">DukeQuill →</a>
+        <a class="card-link" href="https://github.com/changoloco066/DukeQuill" target="_blank" rel="noopener">github.com/changoloco066/DukeQuill →</a>
       </article>
 
       <article class="card reveal">
@@ -108,7 +132,7 @@
         <div class="stack">
           <span>Java</span><span>Spring Boot</span><span>REST</span>
         </div>
-        <a class="card-link" href="https://github.com/changoloco066/dukequill-api" target="_blank" rel="noopener">dukequill-api →</a>
+        <a class="card-link" href="https://github.com/changoloco066/dukequill-api" target="_blank" rel="noopener">github.com/changoloco066/dukequill-api →</a>
       </article>
 
       <article class="card reveal">
@@ -120,9 +144,9 @@
         Displays personal reflections from the book on rotation, with Room persistence, WorkManager
         scheduling, and a detail dialog on tap.</p>
         <div class="stack">
-          <span>Kotlin</span><span>Android</span><span>Room</span><span>WorkManager</span>
+          <span>Java</span><span>Android</span><span>Room</span><span>WorkManager</span>
         </div>
-        <a class="card-link" href="https://github.com/changoloco066/TaEisHeauton" target="_blank" rel="noopener">TaEisHeauton →</a>
+        <a class="card-link" href="https://github.com/changoloco066/TaEisHeauton" target="_blank" rel="noopener">github.com/changoloco066/TaEisHeauton →</a>
       </article>
 
       <article class="card reveal">
@@ -150,7 +174,7 @@
         <div class="stack">
           <span>Java</span><span>DP</span><span>Data structures</span>
         </div>
-        <a class="card-link" href="https://github.com/changoloco066/leetcode" target="_blank" rel="noopener">leetcode →</a>
+        <a class="card-link" href="https://github.com/changoloco066/leetcode-solutions" target="_blank" rel="noopener">github.com/changoloco066/leetcode-solutions →</a>
       </article>
 
       <article class="card reveal">
@@ -199,7 +223,7 @@
         <ul>
           <li>Automata & formal languages</li>
           <li>Compilers / lexers / parsers</li>
-          <li>Embedded (ESP32)</li>
+          <li>Embedded (ESP32, Flipper Zero)</li>
           <li>Android (Room, WorkManager)</li>
         </ul>
       </div>
@@ -212,8 +236,8 @@
     <p class="prompt-line"><span class="prompt" style="color:var(--teal)">josue@saltillo</span>:~$ echo "let's talk"<span class="cursor"></span></p>
     <div class="socials">
       <a href="https://github.com/changoloco066" target="_blank" rel="noopener">github</a>
-      <a href="mailto:josuesf066@gmail.com">email</a>
-      <a href="https://linkedin.com/in/josuesf" target="_blank" rel="noopener">linkedin</a>
+      <a href="mailto:your-email@example.com">email</a>
+      <a href="https://linkedin.com/in/changoloco066" target="_blank" rel="noopener">linkedin</a>
     </div>
   </div>
 </footer>

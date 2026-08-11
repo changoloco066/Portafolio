@@ -1,122 +1,18 @@
-const { animate, createTimeline, stagger, onScroll, utils } = anime;
+const { animate, createTimeline, stagger, onScroll, utils, scrambleText } = anime;
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------------- Hero: automaton canvas ---------------- */
-const canvas = document.getElementById('automaton');
-const ctx = canvas.getContext('2d');
-let W, H, DPR;
-
-function resize(){
-  DPR = window.devicePixelRatio || 1;
-  W = canvas.clientWidth;
-  H = canvas.clientHeight;
-  canvas.width = W * DPR;
-  canvas.height = H * DPR;
-  ctx.setTransform(DPR,0,0,DPR,0,0);
-}
-window.addEventListener('resize', resize);
-
-const word = "JOSUE";
-let states = [];
-let activeIndex = -1;
-let pulseT = 0;
-let lastStep = 0;
-const stepInterval = 650;
-
-function layoutStates(){
-  states = [];
-  const n = word.length + 1; // states: q0..qn (accept)
-  const margin = 70;
-  const usableW = Math.max(W - margin*2, 100);
-  for(let i=0;i<n;i++){
-    const x = margin + (usableW * i / (n-1));
-    const y = H/2 + (i % 2 === 0 ? -18 : 18);
-    states.push({x, y, accept: i === n-1});
-  }
-}
-
-function draw(ts){
-  if(!lastStep) lastStep = ts;
-  ctx.clearRect(0,0,W,H);
-
-  ctx.lineWidth = 1.4;
-  for(let i=0;i<states.length-1;i++){
-    const a = states[i], b = states[i+1];
-    const lit = i < activeIndex;
-    ctx.strokeStyle = lit ? 'rgba(232,163,61,0.85)' : 'rgba(42,53,80,0.9)';
-    ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    const midX = (a.x+b.x)/2, midY = Math.min(a.y,b.y) - 26;
-    ctx.quadraticCurveTo(midX, midY, b.x, b.y);
-    ctx.stroke();
-
-    if(i < word.length){
-      ctx.font = "12px 'JetBrains Mono', monospace";
-      ctx.fillStyle = lit ? '#E8A33D' : '#8892B0';
-      ctx.textAlign = 'center';
-      ctx.fillText(word[i], midX, midY - 6);
-    }
-  }
-
-  for(let i=0;i<states.length;i++){
-    const s = states[i];
-    const isActive = i === activeIndex;
-    const isPast = i < activeIndex;
-    const r = s.accept ? 15 : 12;
-
-    if(isActive && !prefersReduced){
-      const glow = 8 + Math.sin(pulseT/120) * 4;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, r+glow, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(232,163,61,0.15)';
-      ctx.fill();
-    }
-
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, r, 0, Math.PI*2);
-    ctx.fillStyle = '#0B1120';
-    ctx.fill();
-    ctx.lineWidth = isActive ? 2.4 : 1.6;
-    ctx.strokeStyle = isActive ? '#E8A33D' : (isPast ? '#5FB3B3' : '#2A3550');
-    ctx.stroke();
-
-    if(s.accept){
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, r-4, 0, Math.PI*2);
-      ctx.strokeStyle = isPast || isActive ? '#5FB3B3' : '#2A3550';
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-    }
-  }
-
-  pulseT += 16;
-  if(ts - lastStep > stepInterval){
-    lastStep = ts;
-    activeIndex++;
-    if(activeIndex > states.length){
-      activeIndex = -1;
-    }
-  }
-  requestAnimationFrame(draw);
-}
-
-resize();
-layoutStates();
-window.addEventListener('resize', layoutStates);
-requestAnimationFrame(draw);
-
-/* ---------------- anime.js v4: hero entrance ---------------- */
+/* anime.js v4: hero entrance  */
 if(prefersReduced){
   utils.set('#eyebrow, #heroTitle, #heroTag, #heroLinks', { opacity: 1, translateY: 0 });
 } else {
   createTimeline({ defaults: { ease: 'outExpo' } })
-    .add('#eyebrow',   { opacity: [0,1], translateY: [8,0],  duration: 600 })
-    .add('#heroTitle', { opacity: [0,1], translateY: [16,0], duration: 700 }, '-=350')
+    .add('#eyebrow',   { opacity: [0,1], translateY: [8,0], innerHTML: scrambleText({ chars: 'braille' }), duration: 900 })
+    .add('#heroTitle', { opacity: [0,1], translateY: [16,0], duration: 700 }, '-=500')
     .add('#heroTag',   { opacity: [0,1], translateY: [10,0], duration: 600 }, '-=400')
     .add('#heroLinks', { opacity: [0,1], translateY: [10,0], duration: 500 }, '-=350');
 }
 
-/* ---------------- scroll reveal (sections) via native ScrollObserver ---------------- */
+/*  scroll reveal (sections) via native ScrollObserver  */
 const revealEls = document.querySelectorAll('.reveal:not(.card)');
 if(prefersReduced){
   utils.set(revealEls, { opacity: 1, translateY: 0 });
@@ -132,7 +28,7 @@ if(prefersReduced){
   });
 }
 
-/* ---------------- staggered skill lists ---------------- */
+/* staggered skill lists  */
 const skillsGrid = document.querySelector('.skills-grid');
 if(skillsGrid){
   const skillItems = skillsGrid.querySelectorAll('.skill-group li');
@@ -150,7 +46,7 @@ if(skillsGrid){
   }
 }
 
-/* ---------------- project cards: staggered entrance + hover lift ---------------- */
+/*  project cards: staggered entrance + hover lift */
 const cards = document.querySelectorAll('.card');
 if(prefersReduced){
   utils.set(cards, { opacity: 1, translateY: 0 });
@@ -205,7 +101,7 @@ document.querySelectorAll('.navlinks a').forEach(link => {
   });
 });
 
-/* ---------------- Duke's mug: idle steam + hover wiggle ---------------- */
+/*  Duke's mug: idle steam + hover wiggle  */
 if(!prefersReduced){
   animate('.steam-wisp', {
     translateY: [0, -6],
@@ -255,4 +151,6 @@ if(dotDivider){
       autoplay: onScroll({ target: dotDivider, enter: 'bottom-=5% top', repeat: false })
     });
   }
+
+
 }
