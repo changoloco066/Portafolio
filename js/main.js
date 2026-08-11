@@ -1,16 +1,5 @@
-const { animate, createTimeline, stagger, onScroll, utils, scrambleText } = anime;
+const { animate, stagger, onScroll, utils } = anime;
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* anime.js v4: hero entrance  */
-if(prefersReduced){
-  utils.set('#eyebrow, #heroTitle, #heroTag, #heroLinks', { opacity: 1, translateY: 0 });
-} else {
-  createTimeline({ defaults: { ease: 'outExpo' } })
-    .add('#eyebrow',   { opacity: [0,1], translateY: [8,0], innerHTML: scrambleText({ chars: 'braille' }), duration: 900 })
-    .add('#heroTitle', { opacity: [0,1], translateY: [16,0], duration: 700 }, '-=500')
-    .add('#heroTag',   { opacity: [0,1], translateY: [10,0], duration: 600 }, '-=400')
-    .add('#heroLinks', { opacity: [0,1], translateY: [10,0], duration: 500 }, '-=350');
-}
 
 /*  scroll reveal (sections) via native ScrollObserver  */
 const revealEls = document.querySelectorAll('.reveal:not(.card)');
@@ -224,6 +213,20 @@ if(flipperIcon && !prefersReduced){
     });
   });
 }
+const dragonDivider = document.getElementById('dragonDivider');
+if(dragonDivider){
+  if(prefersReduced){
+    utils.set(dragonDivider, { opacity: 1 });
+  } else {
+    animate(dragonDivider, {
+      opacity: [0, 0.9],
+      scale: [0.94, 1],
+      duration: 900,
+      ease: 'outQuad',
+      autoplay: onScroll({ target: dragonDivider, enter: 'bottom-=10% top', repeat: false })
+    });
+  }
+}
 
 /* ---------------- dot divider: grid stagger ripple (nod to animejs.com) ---------------- */
 const dotDivider = document.getElementById('dotDivider');
@@ -251,4 +254,26 @@ if(dotDivider){
     });
   }
 
+}
+
+/* ---------------- scroll progress bar: onScroll sync mode ---------------- */
+/* tracks the whole page (body) top->bottom against the viewport, sync:true ties
+   the bar's scaleX directly to scroll position — no manual scroll listener needed */
+const scrollProgress = document.getElementById('scrollProgress');
+if(scrollProgress){
+  if(prefersReduced){
+    scrollProgress.style.display = 'none';
+  } else {
+    animate(scrollProgress, {
+      scaleX: [0, 1],
+      ease: 'linear',
+      autoplay: onScroll({
+        target: document.body,
+        container: window,
+        enter: 'top top',
+        leave: 'bottom bottom',
+        sync: true
+      })
+    });
+  }
 }
