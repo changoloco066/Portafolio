@@ -28,10 +28,10 @@
       <span class="term-dot red"></span><span class="term-dot yellow"></span><span class="term-dot green"></span>
       <span class="term-title mono">josue@saltillo: ~/portfolio — bash</span>
     </div>
-    <div class="term-body hero">
+    <div class="term-body hero hud-corners">
       <canvas id="automaton"></canvas>
       <p class="hero-eyebrow mono" id="eyebrow">δ: Σ* → Q &nbsp;·&nbsp; computer systems engineering</p>
-      <h1 id="heroTitle">Josué <span class="accent">Sánchez</span></h1>
+      <h1 id="heroTitle" data-text="Josué Sánchez">Josué <span class="accent">Sánchez</span></h1>
       <p class="tagline" id="heroTag">
         <span class="quote">I build from the lexer up to the hardware — I like understanding what's underneath.</span><br>
         Raspberry Pi homelab · lexers, parsers and compilers for fun · TecNM Saltillo.
@@ -68,7 +68,18 @@
         <p><span class="nf-key">Kernel:</span> Formal Languages &amp; Automata Theory</p>
         <p><span class="nf-key">Shell:</span> curiosity.sh</p>
         <p><span class="nf-key">Languages:</span> Java, Python, JS/TS, C++ (learning)</p>
-        <p><span class="nf-key">Toys:</span> Raspberry Pi · ESP32-S3 · Flipper Zero</p>
+        <p><span class="nf-key">Toys:</span> Raspberry Pi · ESP32-S3 · Flipper Zero
+          <span class="flipper-badge" id="flipperIcon" aria-hidden="true">
+            <svg viewBox="0 0 40 26" width="30" height="20">
+              <rect x="1" y="1" width="38" height="24" rx="5" fill="var(--ink)" stroke="var(--amber)" stroke-width="1.6"/>
+              <rect x="6" y="5" width="17" height="11" rx="1.5" class="flipper-screen"/>
+              <circle cx="31" cy="8" r="2.1" fill="var(--rule)"/>
+              <circle cx="31" cy="14" r="2.1" fill="var(--rule)"/>
+              <circle cx="31" cy="20" r="2.1" fill="var(--rule)"/>
+              <circle cx="9" cy="20.5" r="1.6" fill="var(--teal)"/>
+            </svg>
+          </span>
+        </p>
         <p><span class="nf-key">Building:</span> DukeQuill, ESP32 MP3 Player</p>
         <p class="nf-colors" aria-hidden="true">
           <span style="background:var(--ink)"></span><span style="background:var(--amber)"></span><span style="background:var(--teal)"></span><span style="background:var(--parchment)"></span><span style="background:var(--rule)"></span>
