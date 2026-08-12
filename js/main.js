@@ -1,4 +1,4 @@
-const { animate, stagger, onScroll, utils } = anime;
+const { animate, stagger, onScroll, utils, scrambleText } = anime;
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------------- boot terminal intro ---------------- */
@@ -20,6 +20,16 @@ const bootScript = [
   { type:'out', text:'[ok] session ready' },
 ];
 
+function playEyebrowScramble(){
+  const eyebrow = document.getElementById('eyebrow');
+  if(!eyebrow || prefersReduced) return;
+  animate(eyebrow, {
+    innerHTML: scrambleText({ chars: 'braille' }),
+    duration: 900,
+    ease: 'outExpo'
+  });
+}
+
 function finishBoot(){
   if(!bootOverlay) return;
   document.documentElement.style.overflow = '';
@@ -32,7 +42,10 @@ function finishBoot(){
     opacity: [1, 0],
     duration: 500,
     ease: 'inOutQuad',
-    onComplete: () => { bootOverlay.style.display = 'none'; }
+    onComplete: () => {
+      bootOverlay.style.display = 'none';
+      playEyebrowScramble();
+    }
   });
 }
 
@@ -212,89 +225,6 @@ if(dukeMug && !prefersReduced){
   });
 }
 
-/* ---------------- hero canvas: live elementary cellular automaton (Rule 30) ---------------- */
-/* δ: Σ* → Q — the eyebrow line isn't decoration, this is the automaton it refers to */
-const automatonCanvas = document.getElementById('automaton');
-if(automatonCanvas){
-  const ctx = automatonCanvas.getContext('2d');
-  const RULE = 30;               // swap for 90, 110, 184... to change the pattern
-  const CELL = 5;                 // px per cell
-  const ruleBits = RULE.toString(2).padStart(8, '0').split('').map(Number);
-  const nextState = (l, c, r) => ruleBits[7 - (l * 4 + c * 2 + r)];
-
-  let cols, rows, cells, row = 0;
-  let rafId = null;
-
-  function sizeCanvas(){
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = automatonCanvas.clientWidth;
-    const h = automatonCanvas.clientHeight;
-    automatonCanvas.width = w * dpr;
-    automatonCanvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cols = Math.floor(w / CELL);
-    rows = Math.floor(h / CELL);
-    cells = new Uint8Array(cols);
-    cells[Math.floor(cols / 2)] = 1;   // single seed cell, centered
-    row = 0;
-    ctx.clearRect(0, 0, w, h);
-  }
-
-  function drawRow(){
-    ctx.save();
-    ctx.shadowColor = 'rgba(76,255,122,0.85)';
-    ctx.shadowBlur = 6;
-    ctx.fillStyle = '#4CFF7A';
-    for(let i=0;i<cols;i++){
-      if(cells[i]) ctx.fillRect(i*CELL, row*CELL, CELL-1, CELL-1);
-    }
-    ctx.restore();
-  }
-
-  function stepAutomaton(){
-    const next = new Uint8Array(cols);
-    for(let i=0;i<cols;i++){
-      const l = cells[(i - 1 + cols) % cols];
-      const c = cells[i];
-      const r = cells[(i + 1) % cols];
-      next[i] = nextState(l, c, r);
-    }
-    cells = next;
-    row++;
-    if(row >= rows){
-      // fade the whole trace and reseed, so it runs indefinitely without ever feeling static
-      ctx.fillStyle = 'rgba(11,17,32,0.94)';
-      ctx.fillRect(0, 0, automatonCanvas.clientWidth, automatonCanvas.clientHeight);
-      cells = new Uint8Array(cols);
-      cells[Math.floor(cols / 2)] = 1;
-      row = 0;
-    }
-  }
-
-  sizeCanvas();
-  if(prefersReduced){
-    // static single generation — still legible as automaton theory, no motion
-    for(let r=0;r<Math.min(rows, 40);r++){ drawRow(); stepAutomaton(); }
-  } else {
-    let last = 0;
-    const FRAME_MS = 90;
-    function loop(ts){
-      if(ts - last >= FRAME_MS){
-        drawRow();
-        stepAutomaton();
-        last = ts;
-      }
-      rafId = requestAnimationFrame(loop);
-    }
-    rafId = requestAnimationFrame(loop);
-
-    let resizeTimer;
-    window.addEventListener('resize', ()=>{
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(sizeCanvas, 200);
-    });
-  }
-}
 
 /* ---------------- Flipper Zero badge: hover wiggle, same family as Duke's mug ---------------- */
 const flipperIcon = document.getElementById('flipperIcon');
