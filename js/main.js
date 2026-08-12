@@ -1,6 +1,103 @@
 const { animate, stagger, onScroll, utils } = anime;
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* ---------------- boot terminal intro ---------------- */
+const bootOverlay = document.getElementById('bootOverlay');
+const bootBody = document.getElementById('bootBody');
+
+const bootScript = [
+  { type:'cmd', prompt:'visitor@josue:~$ ',           text:'cd portfolio' },
+  { type:'cmd', prompt:'visitor@josue:~/portfolio$ ', text:'ls -la' },
+  { type:'out', text:'drwxr-xr-x   6 josue  staff   192B  index.html' },
+  { type:'out', text:'drwxr-xr-x   3 josue  staff    96B  css/' },
+  { type:'out', text:'drwxr-xr-x   3 josue  staff    96B  js/' },
+  { type:'out', text:'drwxr-xr-x   4 josue  staff   128B  src/' },
+  { type:'out', text:'-rw-r--r--   1 josue  staff   1.2K  README.md' },
+  { type:'cmd', prompt:'visitor@josue:~/portfolio$ ', text:'./boot.sh' },
+  { type:'out', text:'[ok] mounting DOM' },
+  { type:'out', text:'[ok] loading fonts (Fraunces, JetBrains Mono)' },
+  { type:'out', text:'[ok] initializing automaton (rule 30)' },
+  { type:'out', text:'[ok] session ready' },
+];
+
+function finishBoot(){
+  if(!bootOverlay) return;
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+  if(prefersReduced){
+    bootOverlay.style.display = 'none';
+    return;
+  }
+  animate(bootOverlay, {
+    opacity: [1, 0],
+    duration: 500,
+    ease: 'inOutQuad',
+    onComplete: () => { bootOverlay.style.display = 'none'; }
+  });
+}
+
+if(bootOverlay && bootBody){
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  if(prefersReduced){
+    finishBoot();
+  } else {
+    let skipped = false;
+    const skip = () => { if(!skipped){ skipped = true; finishBoot(); } };
+    bootOverlay.addEventListener('click', skip);
+    window.addEventListener('keydown', skip, { once:true });
+
+    (async () => {
+      for(const line of bootScript){
+        if(skipped) break;
+        const row = document.createElement('div');
+        row.className = 'boot-line' + (line.type === 'out' ? ' boot-out' : '');
+        bootBody.appendChild(row);
+
+        if(line.type === 'cmd'){
+          const promptSpan = document.createElement('span');
+          promptSpan.className = 'boot-prompt';
+          promptSpan.textContent = line.prompt;
+          row.appendChild(promptSpan);
+
+          const cmdSpan = document.createElement('span');
+          cmdSpan.className = 'boot-cmd typing';
+          row.appendChild(cmdSpan);
+
+          for(const ch of line.text){
+            if(skipped) break;
+            cmdSpan.textContent += ch;
+            await new Promise(r => setTimeout(r, 28 + Math.random() * 100));
+          }
+          cmdSpan.classList.remove('typing');
+          await new Promise(r => setTimeout(r, 310));
+        } else {
+          row.textContent = line.text;
+          await new Promise(r => setTimeout(r, 210));
+        }
+        bootBody.scrollTop = bootBody.scrollHeight;
+      }
+
+      if(!skipped){
+        const cursorRow = document.createElement('div');
+        cursorRow.className = 'boot-line';
+        const promptSpan = document.createElement('span');
+        promptSpan.className = 'boot-prompt';
+        promptSpan.textContent = 'visitor@josue:~/portfolio$ ';
+        cursorRow.appendChild(promptSpan);
+        const cursor = document.createElement('span');
+        cursor.className = 'boot-cursor';
+        cursorRow.appendChild(cursor);
+        bootBody.appendChild(cursorRow);
+
+        await new Promise(r => setTimeout(r, 450));
+        finishBoot();
+      }
+    })();
+  }
+}
+
 /*  scroll reveal (sections) via native ScrollObserver  */
 const revealEls = document.querySelectorAll('.reveal:not(.card)');
 if(prefersReduced){
