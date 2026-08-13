@@ -273,6 +273,11 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
 .stack span{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--dim); border:1px solid var(--rule); padding:3px 8px; border-radius:2px; }
 .card-link{ font-family:'JetBrains Mono', monospace; font-size:13px; }
 
+/* HOMELAB — same .neofetch layout as Duke, but the paragraph is long enough
+   to trip the default flex-wrap, so this card forces the row to stay put. */
+.card--homelab .neofetch{ flex-wrap:nowrap; }
+.card--homelab .homelab-info{ flex:1 1 0; min-width:0; }
+
 .dragon-bg{
   position:absolute;
   top:40%; left:65%;
@@ -310,6 +315,29 @@ section{ padding:56px 0; border-top:1px solid var(--rule); }
   width:var(--vagabond-width);
   height:auto;
   transform:translate(-50%, -50%);
+  opacity:0.9;
+}
+
+.sisyphus-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+  --sisyphus-top: 75%;
+  --sisyphus-left: 90%;
+  --sisyphus-width: 250px;
+   -webkit-mask-image: radial-gradient(ellipse 65% 60% at 50% 50%, black 45%, transparent 100%);
+          mask-image: radial-gradient(ellipse 65% 60% at 50% 50%, black 45%, transparent 100%);
+}
+.sisyphus-bg img{
+  position:absolute;
+  top:var(--sisyphus-top);
+  left:var(--sisyphus-left);
+  width:var(--sisyphus-width);
+  height:auto;
+  transform:translate(-50%, -50%);
+  filter: brightness(1.05);
   opacity:0.9;
 }
 /* DOT DIVIDER (anime.js grid-stagger nod) */
